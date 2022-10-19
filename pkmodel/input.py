@@ -100,3 +100,8 @@ def dosage_protocol_input():
             inst_dict[t] = DOSE
 
         return STEADY_DOSAGE, inst_dict
+
+def max_time_input():
+    """ # TODO: docstring """
+    MAX_TIME = input('Enter maximum time for model (h): ')
+    return MAX_TIME
