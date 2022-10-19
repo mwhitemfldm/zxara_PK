@@ -7,12 +7,11 @@ class Model:
     """
     Parameters
     ----------
-    central: numeric, optional
-        an example paramter
-    peripherals: array of lists, 
-    dosing: list. 
+    central: list, [central_volume, clearance_rate]
+    peripherals: array of lists, [[compartment1_volume, transition_rate1], ...]
+    dosing: list, 
           if i.b. dosing : empty list 
-          if s.c dosing : contains absorption rate k_a
+          if s.c dosing : list contains absorption rate KA
     
     Functions
     ----------
@@ -20,7 +19,7 @@ class Model:
 
     """
 
-    def __init__(self, central, peripherals, dosing=[]):
+    def __init__(self, central, peripherals=[], dosing=[]):
         self.central = central
         self.peripherals = peripherals
         self.dose = dosing
