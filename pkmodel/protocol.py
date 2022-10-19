@@ -1,5 +1,5 @@
 #
-# Protocol class
+# Protocol class - currently redundant
 #
 
 class Protocol:
