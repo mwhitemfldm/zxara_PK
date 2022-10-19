@@ -31,15 +31,15 @@ class Model:
     raise value error if k_a input is not an empty list, or list containing non negative number
 
     """
-    def __init__(self, central, peripherals=[], dosing=[]):
+    def __init__(self, central, peripherals=[], dosage=[]):
         catchTypeError(central)
         for periph in peripherals:
             catchTypeError(periph)
-        if len(dosing) not in [0,1] or (len(dosing) == 1 and not isinstance(dosing[0], (int, float))):
+        if len(dosage) not in [0,1] or (len(dosage) == 1 and not isinstance(dosage[0], (int, float))):
             raise ValueError('invalid k_a input')
         self.central = central
         self.peripherals = peripherals
-        self.dosage = dosing
+        self.dosage = dosage
 
     @property
     def pcount(self):
