@@ -40,7 +40,7 @@ def peripheral_input():
 
 
 
-def dosing_type_input():
+def dosing_input():
     """
     Determine dosage compartment existence and parameters from user input:
         Absorption rate k_a / /h
@@ -59,7 +59,7 @@ def dosing_type_input():
     return dosing
 
 
-def dosage_input():
+def dosage_function_input():
     """ 
     Generates dosage function from user input 
     """
@@ -72,6 +72,8 @@ def dosage_input():
     else: 
         DOSE = int(input('Instantaneous dose of drug given per time point (ng): '))
         TIME_POINTS = list(input('List of time points at which drug is given (h): '))
+
+    # return a_function
 
     # TODO: Generate function
     # TODO: what if it is a combination of both types of dosage
