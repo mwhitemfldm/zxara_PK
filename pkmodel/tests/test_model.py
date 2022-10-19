@@ -6,19 +6,15 @@ class ModelTest(unittest.TestCase):
     Tests the :class:`Model` class.
     """
 
-    @pytest.mark.parametrize(
-    "Centrals, Peripherals, Dosings",
-    [
-        ([5.5, 6.1], [[1,2],[0.001, 2]], []),
-    ])
-    def test_create(self, Centrals, Peripherals, Dosings):
+    def test_create(self):
         """
         Tests Model creation.
         """
-        model = pk.model.Model(central=Centrals, peripherals=Peripherals, dosing=Dosings)
-        self.assertEqual(model.central, Centrals)
-        self.assertEqual(model.peripherals, Peripherals)
-        self.assertEqual(model.dose, Dosings)
+        model = pk.model.Model([5.5, 6.1], [[1,2],[0.001, 2]], [])
+        self.assertEqual(model.central, [5.5, 6.1])
+        self.assertEqual(model.peripherals, [[1,2],[0.001, 2]])
+        self.assertEqual(model.dose, [])
+        self.assertEqual(model.pcount, 2)
         
 
 
