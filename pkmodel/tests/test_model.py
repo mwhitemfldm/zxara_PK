@@ -1,7 +1,6 @@
 import unittest
 import pkmodel as pk
 
-
 class ModelTest(unittest.TestCase):
     """
     Tests the :class:`Model` class.
@@ -10,6 +9,12 @@ class ModelTest(unittest.TestCase):
         """
         Tests Model creation.
         """
-        model = pk.Model()
-        self.assertEqual(model.value, 42)
+        model = pk.Model(central=[5.5, 6.1], peripherals=[[1,2],[0.001, 2]], dosing=[])
+        self.assertEqual(model.central, [5.5, 6.1])
+        self.assertEqual(model.peripherals, [[1,2],[0.001, 2]])
+        self.assertEqual(model.dose, [])
+
+if __name__ == '__main__':
+    unittest.main()
+
 
