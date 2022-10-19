@@ -8,5 +8,5 @@ dosage = dosage_input()
 
 sys_model = Model(central, peripherals, dosage) # Create Model object
 
-# # Collect dosage function input data
-# dosage_fn = dosage_function_input()
+# Collect dosage protocol input data
+dosage_protocol = dosage_protocol_input()
