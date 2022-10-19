@@ -15,7 +15,7 @@ class Model:
     ----------
     central: list, [central_volume, clearance_rate]
     peripherals: array of lists, [[compartment1_volume, transition_rate1], ...]
-    dosing: list, 
+    dosage: list, 
           if i.b. dosing : empty list 
           if s.c dosing : list contains absorption rate KA
     
@@ -29,15 +29,20 @@ class Model:
     raise value error if k_a input is not an empty list, or list containing non negative number
 
     """
+<<<<<<< HEAD
     def __init__(self, central, peripherals=[], dosing=[]):
         catchTypeError(central)
         for periph in peripherals:
             catchTypeError(periph)
         if len(dosing) not in [0,1] or (len(dosing) == 1 and not isinstance(dosing[0], (int, float))):
             raise ValueError('invalid k_a input')
+=======
+    
+    def __init__(self, central, peripherals=[], dosage=[]):
+>>>>>>> 48dc89b53e65eab036299284cb05a0ed4bbe4122
         self.central = central
         self.peripherals = peripherals
-        self.dose = dosing
+        self.dosage = dosage
 
     @property
     def pcount(self):
