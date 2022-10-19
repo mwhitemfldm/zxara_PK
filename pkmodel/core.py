@@ -9,7 +9,7 @@ dosage = dosage_input()
 sys_model = Model(central, peripherals, dosage) # Create Model object
 
 # Collect dosage protocol input data
-dosage_protocol = dosage_protocol_input()
+STEADY_DOSAGE, dosage_protocol = dosage_protocol_input()
 
 # Add solver here
 
