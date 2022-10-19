@@ -8,7 +8,7 @@ def central_input():
     central (list): central compartment parameters [VC, CL]
     """
     # TODO: Fail if input anything except int or float
-    VC = float(input('Volume of central compartment in mL: '))
+    VC = input('Volume of central compartment in mL: ')
     CL = float(input('Clearance rate from central compartment in mL/h: '))
     central = [VC, CL]
     
@@ -66,7 +66,7 @@ def dosage_protocol_input():
     Returns:
     STEADY_DOSAGE (string): 'Y' = steady dosage, 'N' = instantaneous dosage
     steady_dict (dict): If STEADY_DOSAGE == 'Y', {'start_time': START_TIME (float), 'end_time': END_TIME (float), 'dose_rate': DOSE_RATE (float)}
-    inst_dict (dict): If STEADY_DOSAGE == 'N', {'time_points': TIME_POINTS (list), 'inst_dose': DOSE (float)}
+    inst_dict (dict): If STEADY_DOSAGE == 'N', {time1: DOSE, time2: DOSE, ...}
     """
     # TODO: what if it is a combination of both types of dosage 
     # TODO: Replace returned dictionaries to make it simpler?
@@ -95,6 +95,8 @@ def dosage_protocol_input():
                 add_point = input('Add another point (Y/N)? ')
                 
         # Make dict of data
-        inst_dict = {'time_points': TIME_POINTS, 'inst_dose': DOSE}
+        inst_dict = {}
+        for t in TIME_POINTS:
+            inst_dict[t] = DOSE
 
         return STEADY_DOSAGE, inst_dict
