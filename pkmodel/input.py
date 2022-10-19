@@ -46,7 +46,7 @@ def dosing_input():
         Absorption rate k_a / /h
 
     Returns:
-    dosing (list): dosage compartment parameters []
+    dosing (list): dosage compartment parameters [k_a]
         - empty list if no dosage compartment
     """
     DOSAGE_COMPARTMENT = input('Is there a dosage compartment (Yes/No)? ')
@@ -64,6 +64,7 @@ def dosage_function_input():
     Generates dosage function from user input 
     """
 
+    # TODO: Fail if input anything except Yes/No
     STEADY_DOSAGE = input('Is drug given in steady application over time (Yes/No)? ')
 
     if STEADY_DOSAGE == 'Yes':
