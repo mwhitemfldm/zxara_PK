@@ -4,15 +4,22 @@
 
 
 class Model:
-    """A Pharmokinetic (PK) model
-
+    """
     Parameters
     ----------
-
-    value: numeric, optional
+    central: numeric, optional
         an example paramter
+    peripherals: array of lists, 
+    dosing: list. 
+          if i.b. dosing : empty list 
+          if s.c dosing : contains absorption rate k_a
+    
+    Functions
+    ----------
+    pcount: int, number of peripheral compartments
 
     """
+
     def __init__(self, central, peripherals, dosing):
         self.central = central
         self.peripherals = peripherals
