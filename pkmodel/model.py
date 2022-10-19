@@ -9,7 +9,7 @@ class Model:
     ----------
     central: list, [central_volume, clearance_rate]
     peripherals: array of lists, [[compartment1_volume, transition_rate1], ...]
-    dosing: list, 
+    dosage: list, 
           if i.b. dosing : empty list 
           if s.c dosing : list contains absorption rate KA
     
@@ -19,10 +19,10 @@ class Model:
 
     """
     
-    def __init__(self, central, peripherals=[], dosing=[]):
+    def __init__(self, central, peripherals=[], dosage=[]):
         self.central = central
         self.peripherals = peripherals
-        self.dose = dosing
+        self.dosage = dosage
 
     @property
     def pcount(self):

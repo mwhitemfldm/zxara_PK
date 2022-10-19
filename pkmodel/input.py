@@ -40,7 +40,7 @@ def peripheral_input():
 
 
 
-def dosing_input():
+def dosage_input():
     """
     Determine dosage compartment existence and parameters from user input:
         Absorption rate k_a / /h
@@ -51,12 +51,12 @@ def dosing_input():
     """
     DOSAGE_COMPARTMENT = input('Is there a dosage compartment (Yes/No)? ')
 
-    dosing = []
+    dosage = []
     if DOSAGE_COMPARTMENT == 'Yes':
         k_a = float(input('Absorption rate for dosage compartment (/h) if subcutaneous dosing: '))
-        dosing.append(k_a)
+        dosage.append(k_a)
     
-    return dosing
+    return dosage
 
 
 def dosage_function_input():
