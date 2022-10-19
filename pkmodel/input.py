@@ -49,10 +49,10 @@ def dosage_input():
     dosing (list): dosage compartment parameters [k_a]
         - empty list if no dosage compartment
     """
-    DOSAGE_COMPARTMENT = input('Is there a dosage compartment (Yes/No)? ')
+    DOSAGE_COMPARTMENT = input('Is there a dosage compartment (Y/N)? ')
 
     dosage = []
-    if DOSAGE_COMPARTMENT == 'Yes':
+    if DOSAGE_COMPARTMENT == 'Y':
         k_a = float(input('Absorption rate for dosage compartment (/h) if subcutaneous dosing: '))
         dosage.append(k_a)
     
@@ -64,21 +64,21 @@ def dosage_protocol_input():
     Collect dosage protocol from user input
 
     Returns:
-    STEADY_DOSAGE (string): 'Yes' = steady dosage, 'No' = instantaneous dosage
-    steady_dict (dict): If STEADY_DOSAGE == 'Yes', {'start_time': START_TIME (float), 'end_time': END_TIME (float), 'dose_rate': DOSE_RATE (float)}
-    inst_dict (dict): If STEADY_DOSAGE == 'No', {'time_points': TIME_POINTS (list), 'inst_dose': DOSE (float)}
+    STEADY_DOSAGE (string): 'Y' = steady dosage, 'N' = instantaneous dosage
+    steady_dict (dict): If STEADY_DOSAGE == 'Y', {'start_time': START_TIME (float), 'end_time': END_TIME (float), 'dose_rate': DOSE_RATE (float)}
+    inst_dict (dict): If STEADY_DOSAGE == 'N', {'time_points': TIME_POINTS (list), 'inst_dose': DOSE (float)}
     """
     # TODO: what if it is a combination of both types of dosage 
     # TODO: Replace returned dictionaries to make it simpler?
 
-    # TODO: Fail if input anything except Yes/No
-    STEADY_DOSAGE = input('Is drug given in steady application over time (Yes/No)? ')
+    # TODO: Fail if input anything except Y/N
+    STEADY_DOSAGE = input('Is drug given in steady application over time (Y/N)? ')
 
-    if STEADY_DOSAGE == 'Yes':
+    if STEADY_DOSAGE == 'Y':
         DOSE_RATE = float(input('Dosage rate of drug given (ng/h): ')) # TODO: Only int or float
         print('Input time period during which drug is given:')
         START_TIME = float(input('Start time (h): ')) # TODO: Only int or float
-        END_TIME = float(input('End time (h)')) # TODO: Only int or float
+        END_TIME = float(input('End time (h): ')) # TODO: Only int or float
         
         # Make dict of data
         steady_dict = {'start_time': START_TIME, 'end_time': END_TIME, 'dose_rate': DOSE_RATE}
@@ -87,8 +87,13 @@ def dosage_protocol_input():
         
     else: 
         DOSE = int(input('Instantaneous dose of drug given per time point (ng): ')) # TODO: Only int or float
-        TIME_POINTS = list(input('List of time points at which drug is given (h): ')) # TODO: Only int or float
-        
+        # Create time points list
+        TIME_POINTS = [] 
+        add_point = 'Y'
+        while add_point != 'N':
+                TIME_POINTS.append(input('Time point at which drug is given (h): '))
+                add_point = input('Add another point (Y/N)? ')
+                
         # Make dict of data
         inst_dict = {'time_points': TIME_POINTS, 'inst_dose': DOSE}
 
