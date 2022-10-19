@@ -2,6 +2,12 @@
 # Model class
 #
 
+# function to catch type error in list
+def catchTypeError(input_list):
+    for val in input_list:
+        if val < 0 or not isinstance(val, (float, int)):
+            raise ValueError('input values should be non-negative numbers')
+
 
 class Model:
     """
@@ -17,9 +23,23 @@ class Model:
     ----------
     pcount: int, number of peripheral compartments
 
+    Exceptions
+    -----------
+    raise value error if a non numerical value or negative number is given as an input
+    raise value error if k_a input is not an empty list, or list containing non negative number
+
     """
+<<<<<<< HEAD
+    def __init__(self, central, peripherals=[], dosing=[]):
+        catchTypeError(central)
+        for periph in peripherals:
+            catchTypeError(periph)
+        if len(dosing) not in [0,1] or (len(dosing) == 1 and not isinstance(dosing[0], (int, float))):
+            raise ValueError('invalid k_a input')
+=======
     
     def __init__(self, central, peripherals=[], dosage=[]):
+>>>>>>> 48dc89b53e65eab036299284cb05a0ed4bbe4122
         self.central = central
         self.peripherals = peripherals
         self.dosage = dosage
@@ -27,3 +47,5 @@ class Model:
     @property
     def pcount(self):
         return len(self.peripherals)
+
+
