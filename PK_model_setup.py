@@ -20,6 +20,7 @@ NUM_OF_PCS = 2
 peripheral = [ [2,3], [0.1,0.5] ]
 ka = .9
 
+
 def dose(t,X):
     if STEADY_DOSAGE:
         return X
