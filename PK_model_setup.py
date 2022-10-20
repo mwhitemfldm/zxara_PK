@@ -11,22 +11,16 @@ import numpy as np
 import scipy.integrate
 
 
-STEADY_DOSAGE = True
+STEADY_DOSAGE = False
 DOSAGE_COMPARTMENT = False
-TMAX = 100
+TMAX = 10
 central = (11,.6)
 
 NUM_OF_PCS = 3
 peripheral = [ [2,3], [0.1,0.5], [3,5] ]
 ka = .9
 
-def dose(t,X):
-    if STEADY_DOSAGE:
-        return X
-    else:
-        return X
-
-def rhs(t, y, central, periphal, ka):
+def rhs(t, y, central, periphal, ka, dose_concentration):
     '''
     t       : time, independant
     y       : [q_dosage, q_central, q_periphal_1, ..., q_periphal_n]
@@ -40,41 +34,68 @@ def rhs(t, y, central, periphal, ka):
     VC, CL = central
     Qp = np.array([item[0] for item in periphal])
     Vp = np.array([item[1] for item in periphal])
-    X = 2 # User input DOSE AMOUNT
 
     if DOSAGE_COMPARTMENT:
-        Dqd = dose(t,X) - ka*qd
+        Dqd = dose_concentration - ka*qd
         Dqc =   ka*qd   - CL*qc/VC - sum( Qp*(qc/VC - qp/Vp) )
     else:
         Dqd = np.array([0])
-        Dqc = dose(t,X) - CL*qc/VC - sum( Qp*(qc/VC - qp/Vp) )
+        Dqc = dose_concentration - CL*qc/VC - sum( Qp*(qc/VC - qp/Vp) )
 
     Dqp = Qp*(qc/VC - qp/Vp)
 
     return np.concatenate((Dqd,Dqc,Dqp))
 
-t_eval = np.linspace(0, TMAX, 1000)
+def Integrate(t_interval, y0, central, periphal, ka, dose_concentration):
+    args = (central, periphal, ka, dose_concentration)
+    sol = scipy.integrate.solve_ivp(
+            fun=lambda t, y: rhs(t, y, *args),
+            t_span=[t_interval[0], t_interval[-1]],
+            y0=y0, 
+            t_eval=t_interval)
+    
+    return sol.t, sol.y
+    
+t0 = 0
+dose_concentration = 0
+DOSE_REGIME = [[1.,1.,2.], [2.,2.,3.]]
 y0 = np.zeros(2 + NUM_OF_PCS)
+tsol = []
+ysol = []
 
-args = (central, peripheral, ka)
-sol = scipy.integrate.solve_ivp(
-        fun=lambda t, y: rhs(t, y, *args),
-        t_span=[t_eval[0], t_eval[-1]],
-        y0=y0, 
-        t_eval=t_eval)
+for dosage in DOSE_REGIME:
+    ## PRE-DOSE INTERVAL
+    t_interval = np.arange(t0,dosage[0],TMAX/1000) # Increment dosage concentration at start of t_interval
+    sol_t, sol_y = Integrate(t_interval, y0, central, peripheral, ka, dose_concentration)
+    tsol.append(sol_t)
+    ysol.append(sol_y)
+    y0 = sol_y[:,-1]
 
-t = np.transpose(np.tile(sol.t, (len(sol.y),1)))
-y = np.transpose(sol.y)
 
-fig = plt.figure()
-plt.plot(t,y)
-plt.ylabel('drug mass [ng]')
-plt.xlabel('time [h]')
-plt.legend(['q1', 'q2', 'q3', 'q4', 'q5'])
+    ## DOSE INTERVAL
+    if dosage[0]==dosage[1]:
+        y0[0] += dosage[2]
+        t0 = dosage[0]
 
-plt.show()
+    else:
+        t_interval = np.arange(dosage[0],dosage[1],TMAX/1000)
+        dose_concentration = dosage[2]
+        sol_t, sol_y = Integrate(t_interval,y0, central, peripheral, ka, dose_concentration)
+        tsol.append(sol_t)
+        ysol.append(sol_y)
 
-print(t.shape)
-print(y.shape)
+    t0 = dosage[1]
+    dose_concentration = 0
 
+tsol =np.concatenate((tsol))
+ysol =np.concatenate((ysol))
+print( ysol)
+
+# fig = plt.figure()
+# plt.plot(t,y)
+# plt.ylabel('drug mass [ng]')
+# plt.xlabel('time [h]')
+# plt.legend(['q1', 'q2', 'q3', 'q4', 'q5'])
+
+# plt.show()
 # %%
