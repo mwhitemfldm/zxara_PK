@@ -10,10 +10,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.integrate
 
-STEADY_DOSAGE = False
 DOSAGE_COMPARTMENT = False
 TMAX = 10
-central = (11,.6)
+central = (11,60)
 
 NUM_OF_PCS = 3
 peripheral = [ [2,3], [0.1,0.5], [3,5] ]
@@ -57,10 +56,10 @@ def Integrate(t_interval, y0, central, periphal, ka, dose_concentration):
     
 t0 = 0
 dose_concentration = 0
-DOSE_REGIME = [[1.,1.,2.], [2.,2.,3.]]
+DOSE_REGIME = [[1.,1.,2.], [2.,3.,3.]]
 y0 = np.zeros(2 + NUM_OF_PCS)
 tsol = []
-ysol = np.zeros((5,1))
+ysol = np.zeros((2 + NUM_OF_PCS,1))
 
 for dosage in DOSE_REGIME:
     ## PRE-DOSE INTERVAL
@@ -69,11 +68,15 @@ for dosage in DOSE_REGIME:
     tsol.append(sol_t)
     ysol = np.hstack([ysol,sol_y])
     y0 = sol_y[:,-1]
+    dose_concentration = 0
 
 
     ## DOSE INTERVAL
     if dosage[0]==dosage[1]:
-        y0[0] += dosage[2]
+        if DOSAGE_COMPARTMENT:
+            y0[0] += dosage[2]
+        else:
+            y0[1] += dosage[2]
         t0 = dosage[0]
 
     else:
@@ -82,6 +85,7 @@ for dosage in DOSE_REGIME:
         sol_t, sol_y = Integrate(t_interval,y0, central, peripheral, ka, dose_concentration)
         tsol.append(sol_t)
         ysol = np.hstack([ysol,sol_y])
+        y0 = sol_y[:,-1]
     
     t0 = dosage[1]
     dose_concentration = 0
@@ -92,14 +96,17 @@ tsol.append(sol_t)
 ysol = np.hstack([ysol,sol_y])
 
 tsol = np.concatenate((tsol))
-ysol = ysol[:,1:]
+tsol = np.transpose(np.tile(tsol, (len(ysol),1)))
+ysol = np.transpose(ysol[:,1:])
 
 
 fig = plt.figure()
-plt.plot(tsol,np.transpose(ysol))
+plt.plot(tsol,ysol)
 plt.ylabel('drug mass [ng]')
 plt.xlabel('time [h]')
 plt.legend(['q1', 'q2', 'q3', 'q4', 'q5'])
 
 plt.show()
 # %%
+
+
