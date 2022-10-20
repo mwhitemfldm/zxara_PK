@@ -32,8 +32,8 @@ def peripheral_input():
     peripherals = []
     for i in range(0,NUM_OF_PCS):
          # TODO: Fail if input anything except int or float
-        VP = float(input('Volume of peripheral compartment {} in mL: '.format(i+1)))
-        QP = float(input('Transition rate between central compartment and peripheral compartment {} in mL/h: '.format(i+1)))
+        VP = float(input(f'Volume of peripheral compartment {i+1} in mL: '))
+        QP = float(input(f'Transition rate between central compartment and peripheral compartment {i+1} in mL/h: '))
         peripherals.append([VP,QP])
     
     return peripherals
