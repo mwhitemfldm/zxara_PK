@@ -85,7 +85,7 @@ def protocol_input_steady():
         return dosing_array
 
 def protocol_input_instantaneous(dosing_array):
-        """ 
+    """ 
     Collect instantaneous dosage protocol from user input and adds to array created for steady dosage (empty if only instanteous dosage)
     Returns:
     """
