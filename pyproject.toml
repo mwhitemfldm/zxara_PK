@@ -2,7 +2,15 @@
 name = "pkmodel-zxara"
 version = "0.2.0"
 description = "Pharmacokinetic modelling package"
-authors = ["Jacob Wright <jacob.wright@dtc.ox.ac.uk>"]
+
+authors = [
+"Anissa Alloula <anissa.alloula@dtc.ox.ac.uk>", 
+"Marina Luchner <marina.luchner@dtc.ox.ac.uk>", 
+"George Shillock <george.shillock@dtc.ox.ac.uk>", 
+"Mia Whitefield <mia.whitefield@dtc.ox.ac.uk>", 
+"Jacob Wright <jacob.wright@dtc.ox.ac.uk>"
+]
+
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/mwhitemfldm/zxara_PK"
