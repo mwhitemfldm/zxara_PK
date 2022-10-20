@@ -1,16 +1,16 @@
-# Foobar
+# pkmodel-zxara
 
-Foobar is a Python library for dealing with word pluralization.
+A Python package for pharmacokinetics modelling of drug delivery systems.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
 
 ```bash
-pip install foobar
+pip install pkmodel-zxara
 ```
 
-## Usage
+## Usage - need to update this
 
 ```python
 import foobar
