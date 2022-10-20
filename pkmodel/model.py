@@ -7,7 +7,7 @@ def catchTypeError(input_list):
     if len(input_list) != 2:
         raise ValueError('wrong number of inputs provided')
     for val in input_list:
-        if val < 0 or not isinstance(val, (float, int)):
+        if int(val) < 0 or not isinstance(val, (float, int)):
             raise ValueError('input values should be non-negative numbers')
 
 
