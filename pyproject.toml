@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pkmodel-zxara"
-version = "0.1.0"
+version = "0.2.0"
 description = "A pharmacokinetic model"
 authors = ["Jacob Wright <jacob.wright@dtc.ox.ac.uk>"]
 license = "MIT"
