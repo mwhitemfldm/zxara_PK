@@ -60,14 +60,14 @@ dose_concentration = 0
 DOSE_REGIME = [[1.,1.,2.], [2.,2.,3.]]
 y0 = np.zeros(2 + NUM_OF_PCS)
 tsol = []
-ysol = []
+ysol = np.zeros((5,1))
 
 for dosage in DOSE_REGIME:
     ## PRE-DOSE INTERVAL
     t_interval = np.arange(t0,dosage[0],TMAX/1000) # Increment dosage concentration at start of t_interval
     sol_t, sol_y = Integrate(t_interval, y0, central, peripheral, ka, dose_concentration)
     tsol.append(sol_t)
-    ysol.append(sol_y)
+    ysol = np.hstack([ysol,sol_y])
     y0 = sol_y[:,-1]
 
 
@@ -81,20 +81,25 @@ for dosage in DOSE_REGIME:
         dose_concentration = dosage[2]
         sol_t, sol_y = Integrate(t_interval,y0, central, peripheral, ka, dose_concentration)
         tsol.append(sol_t)
-        ysol.append(sol_y)
-
+        ysol = np.hstack([ysol,sol_y])
+    
     t0 = dosage[1]
     dose_concentration = 0
 
-tsol =np.concatenate((tsol))
-ysol =np.concatenate((ysol))
-print( ysol)
+t_interval = np.arange(t0,TMAX,TMAX/1000)
+sol_t, sol_y = Integrate(t_interval,y0, central, peripheral, ka, dose_concentration)
+tsol.append(sol_t)
+ysol = np.hstack([ysol,sol_y])
 
-# fig = plt.figure()
-# plt.plot(t,y)
-# plt.ylabel('drug mass [ng]')
-# plt.xlabel('time [h]')
-# plt.legend(['q1', 'q2', 'q3', 'q4', 'q5'])
+tsol = np.concatenate((tsol))
+ysol = ysol[:,1:]
 
-# plt.show()
+
+fig = plt.figure()
+plt.plot(tsol,np.transpose(ysol))
+plt.ylabel('drug mass [ng]')
+plt.xlabel('time [h]')
+plt.legend(['q1', 'q2', 'q3', 'q4', 'q5'])
+
+plt.show()
 # %%
