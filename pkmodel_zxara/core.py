@@ -11,8 +11,7 @@ dosage = dosage_input()
 sys_model = Model(central, peripherals, dosage) # Create Model object
 
 # Collect protocol input data
-dosing_array = protocol_input_steady()
-dosing_array = protocol_input_instantaneous(dosing_array)
+dosing_array = input_doses()
 MAX_TIME = max_time_input()
 
 sys_protocol = Protocol(dosing_array, MAX_TIME)

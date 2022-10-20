@@ -27,7 +27,6 @@ def peripheral_input():
         - empty list if no peripheral compartments
     """
     # TODO: Fail if input anything except int
-    print('For peripheral compartments: /n')
     NUM_OF_PCS = int(input('Number of peripheral compartments: '))
 
     peripherals = []
@@ -38,8 +37,6 @@ def peripheral_input():
         peripherals.append([VP,QP])
     
     return peripherals
-
-
 
 def dosage_input():
     """
@@ -59,57 +56,32 @@ def dosage_input():
     
     return dosage
 
-
-def protocol_input_steady():
-    """ 
-    Collect steady dosage protocol from user input
-    Returns:
-    """
-    # TODO: Fail if input anything except Y/N
-    STEADY_DOSAGE = input('Is drug given in steady application over time (Y/N)? ')
-    
-    # Make dosing_array
+def input_doses():
+    '''
+    Collect number of doses, whether they are steady or instantaneous, and what amount of drug is given
+    '''
+    TOTAL_DOSES = int(input('How many total doses is the individual given (steady or continuous)? '))
     dosing_array = []
 
-    if STEADY_DOSAGE == 'Y':
-        DOSE_RATE = float(input('Dosage rate of drug given (ng/h): ')) # TODO: Only int or float
-        print('Input time period during which drug is given:')
-        START_TIME = float(input('Start time (h): ')) # TODO: Only int or float
-        END_TIME = float(input('End time (h): ')) # TODO: Only int or float
-        DOSE = DOSE_RATE * (END_TIME - START_TIME)
-        
-        # Make dosing array
-        dosing_array = [[START_TIME, END_TIME, DOSE]]
-        return dosing_array
-    
-    else:
-        dosing_array = []
-        return dosing_array
+    for i in range(1,TOTAL_DOSES+1):
+        print('Dose ' + str(i) + ':')
+        # TODO: Fail if input anything except Y/N
+        DOSE_TYPE = input('Is drug given in steady application over time (A) or instantaneously (B)? ')
 
-def protocol_input_instantaneous(dosing_array):
-    """ 
-    Collect instantaneous dosage protocol from user input and adds to array created for steady dosage (empty if only instanteous dosage)
-    Returns:
-    """
-    INSTANTANEOUS_DOSAGE = input('Is drug given at instantaneous time points (Y/N)? ')
+        if DOSE_TYPE == 'A':
+            DOSE_RATE = float(input('Dosage rate of drug given (ng/h): ')) # TODO: Only int or float
+            START_TIME = float(input('Start time (h): ')) # TODO: Only int or float
+            END_TIME = float(input('End time (h): ')) # TODO: Only int or float
+            DOSE = DOSE_RATE * (END_TIME - START_TIME)
+        
+            # Make dosing array
+            dosing_array.append([START_TIME, END_TIME, DOSE])
+        
+        if DOSE_TYPE == 'B':
+            DOSE = int(input('Instantaneous dose of drug given per time point (ng): ')) # TODO: Only int or float
+            TIME_POINT = float(input('Time point at which drug is given (h): '))
+            dosing_array.append([TIME_POINT, TIME_POINT, DOSE])
 
-    if INSTANTANEOUS_DOSAGE == 'Y': 
-        DOSE = int(input('Instantaneous dose of drug given per time point (ng): ')) # TODO: Only int or float
-        
-        # Create time points list
-        TIME_POINTS = [] 
-        add_point = 'Y'
-        while add_point != 'N':
-                TIME_POINTS.append(float(input('Time point at which drug is given (h): ')))
-                add_point = input('Add another point (Y/N)? ')
-        TIME_POINTS.sort()
-                
-        for t in TIME_POINTS:
-            dosing_array.append([t, t, DOSE])
-        
-        # sort full dosing array by the first time point of both instantaneous and steady dosage 
-        dosing_array.sort()
-    
     return dosing_array
 
 def max_time_input():
