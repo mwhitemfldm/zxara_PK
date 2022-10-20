@@ -1,3 +1,4 @@
+
 #%%
 '''
 INPUTS
@@ -9,6 +10,7 @@ INPUTS
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.integrate
+from pkmodel.visualisation import plotPK
 
 
 STEADY_DOSAGE = True
@@ -77,4 +79,7 @@ plt.show()
 print(t.shape)
 print(y.shape)
 
+plotPK(t, y, 1)
+
 # %%
+ 
