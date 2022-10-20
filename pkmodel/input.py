@@ -59,7 +59,7 @@ def dosage_input():
     return dosage
 
 
-def dosage_protocol_input():
+def protocol_input():
     """ 
     Collect dosage protocol from user input
 
@@ -79,11 +79,11 @@ def dosage_protocol_input():
         print('Input time period during which drug is given:')
         START_TIME = float(input('Start time (h): ')) # TODO: Only int or float
         END_TIME = float(input('End time (h): ')) # TODO: Only int or float
+        DOSE = DOSE_RATE * (END_TIME - START_TIME)
         
-        # Make dict of data
-        steady_dict = {'start_time': START_TIME, 'end_time': END_TIME, 'dose_rate': DOSE_RATE}
-
-        return STEADY_DOSAGE, steady_dict
+        # Make dosing array
+        dosing_array = [[START_TIME, END_TIME, DOSE]]
+        return dosing_array
         
     else: 
         DOSE = int(input('Instantaneous dose of drug given per time point (ng): ')) # TODO: Only int or float
@@ -93,13 +93,13 @@ def dosage_protocol_input():
         while add_point != 'N':
                 TIME_POINTS.append(input('Time point at which drug is given (h): '))
                 add_point = input('Add another point (Y/N)? ')
+        TIME_POINTS.sort()
                 
-        # Make dict of data
-        inst_dict = {}
+        # Make dosing_array
+        dosing_array = []
         for t in TIME_POINTS:
-            inst_dict[t] = DOSE
-
-        return STEADY_DOSAGE, inst_dict
+            dosing_array.append([t, t, DOSE])
+        return dosing_array
 
 def max_time_input():
     """ # TODO: docstring """

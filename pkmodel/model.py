@@ -37,6 +37,7 @@ class Model:
             catchTypeError(periph)
         if len(dosage) not in [0,1] or (len(dosage) == 1 and not isinstance(dosage[0], (int, float))):
             raise ValueError('invalid k_a input')
+        
         self.central = central
         self.peripherals = peripherals
         self.dosage = dosage

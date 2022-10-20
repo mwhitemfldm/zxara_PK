@@ -1,19 +1,15 @@
 #
-# Protocol class - currently redundant
+# Protocol class
 #
 
 class Protocol:
-    """A Pharmokinetic (PK) protocol
+    """
+    Dosing protocol
 
     Parameters
     ----------
 
-    value: numeric, optional
-        an example paramter
-
     """
-    def __init__(self, value=43):
-        self.value = value
-
-if __name__ == '__main__':
-    unittest.main()
+    def __init__(self, dosing_array, max_time):
+        self.dosing_array = dosing_array
+        self.max_time = max_time
