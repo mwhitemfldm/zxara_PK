@@ -1,5 +1,5 @@
 import unittest
-import pkmodel as pk
+import pkmodel_zxara as pk
 
 
 class SolutionTest(unittest.TestCase):

@@ -1,5 +1,5 @@
 import unittest
-import pkmodel as pk
+import pkmodel_zxara as pk
 class ModelTest(unittest.TestCase):
     """
     Tests the :class:`Model` class.
