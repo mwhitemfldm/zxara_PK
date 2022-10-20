@@ -22,4 +22,8 @@ sys_protocol = Protocol(dosing_array, MAX_TIME)
 time_vals, conc_vals = pkmod.PK_solver(sys_model = sys_model, TMAX = MAX_TIME, DOSE_REGIME = dosing_array)
 # Add plotting here
 
-# Add return graphs and CSV here
+# Add return graphs and CSV here (CSV currently only outputs model input parameters)
+
+save_csv(sys_model,dosing_array,MAX_TIME,filename = 'prototypemodel')
+
+
