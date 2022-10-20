@@ -66,6 +66,7 @@ def protocol_input_steady():
     """
     # TODO: Fail if input anything except Y/N
     STEADY_DOSAGE = input('Is drug given in steady application over time (Y/N)? ')
+    
     # Make dosing_array
     dosing_array = []
 
@@ -112,5 +113,5 @@ def protocol_input_instantaneous(dosing_array):
 
 def max_time_input():
     """ # TODO: docstring """
-    MAX_TIME = input('Enter maximum time for model (h): ')
+    MAX_TIME = float(input('Enter maximum time for model (h): '))
     return MAX_TIME
