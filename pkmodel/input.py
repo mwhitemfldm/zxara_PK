@@ -8,7 +8,7 @@ def central_input():
     central (list): central compartment parameters [VC, CL]
     """
     # TODO: Fail if input anything except int or float
-    VC = input('Volume of central compartment in mL: ')
+    VC = float(input('Volume of central compartment in mL: '))
     CL = float(input('Clearance rate from central compartment in mL/h: '))
     central = [VC, CL]
     
