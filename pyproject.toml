@@ -5,6 +5,7 @@ description = "A pharmacokinetic model"
 authors = ["Jacob Wright <jacob.wright@dtc.ox.ac.uk>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/mwhitemfldm/zxara_PK"
 packages = [{include = "pkmodel_zxara"}]
 
 [tool.poetry.dependencies]
