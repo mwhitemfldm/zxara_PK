@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.integrate
 
-DOSAGE_COMPARTMENT = False
+DOSAGE_COMPARTMENT = True
 TMAX = 10
 central = (11,60)
 
@@ -56,7 +56,7 @@ def Integrate(t_interval, y0, central, periphal, ka, dose_concentration):
     
 t0 = 0
 dose_concentration = 0
-DOSE_REGIME = [[1.,1.,2.], [2.,3.,3.]]
+DOSE_REGIME = [[1., 1.5,2.], [2.,2.,3.]]
 y0 = np.zeros(2 + NUM_OF_PCS)
 tsol = []
 ysol = np.zeros((2 + NUM_OF_PCS,1))
@@ -100,13 +100,6 @@ tsol = np.transpose(np.tile(tsol, (len(ysol),1)))
 ysol = np.transpose(ysol[:,1:])
 
 
-fig = plt.figure()
-plt.plot(tsol,ysol)
-plt.ylabel('drug mass [ng]')
-plt.xlabel('time [h]')
-plt.legend(['q1', 'q2', 'q3', 'q4', 'q5'])
-
-plt.show()
 # %%
 
 
