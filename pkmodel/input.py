@@ -64,12 +64,7 @@ def protocol_input():
     Collect dosage protocol from user input
 
     Returns:
-    STEADY_DOSAGE (string): 'Y' = steady dosage, 'N' = instantaneous dosage
-    steady_dict (dict): If STEADY_DOSAGE == 'Y', {'start_time': START_TIME (float), 'end_time': END_TIME (float), 'dose_rate': DOSE_RATE (float)}
-    inst_dict (dict): If STEADY_DOSAGE == 'N', {time1: DOSE, time2: DOSE, ...}
     """
-    # TODO: what if it is a combination of both types of dosage 
-    # TODO: Replace returned dictionaries to make it simpler?
 
     # TODO: Fail if input anything except Y/N
     STEADY_DOSAGE = input('Is drug given in steady application over time (Y/N)? ')
@@ -91,7 +86,7 @@ def protocol_input():
         TIME_POINTS = [] 
         add_point = 'Y'
         while add_point != 'N':
-                TIME_POINTS.append(input('Time point at which drug is given (h): '))
+                TIME_POINTS.append(float(input('Time point at which drug is given (h): ')))
                 add_point = input('Add another point (Y/N)? ')
         TIME_POINTS.sort()
                 
