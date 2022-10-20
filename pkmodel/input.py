@@ -59,15 +59,15 @@ def dosage_input():
     return dosage
 
 
-def protocol_input():
+def protocol_input_steady():
     """ 
-    Collect dosage protocol from user input
-
+    Collect steady dosage protocol from user input
     Returns:
     """
-
     # TODO: Fail if input anything except Y/N
     STEADY_DOSAGE = input('Is drug given in steady application over time (Y/N)? ')
+    # Make dosing_array
+    dosing_array = []
 
     if STEADY_DOSAGE == 'Y':
         DOSE_RATE = float(input('Dosage rate of drug given (ng/h): ')) # TODO: Only int or float
@@ -79,9 +79,21 @@ def protocol_input():
         # Make dosing array
         dosing_array = [[START_TIME, END_TIME, DOSE]]
         return dosing_array
-        
-    else: 
+    
+    else:
+        dosing_array = []
+        return dosing_array
+
+def protocol_input_instantaneous(dosing_array):
+        """ 
+    Collect instantaneous dosage protocol from user input and adds to array created for steady dosage (empty if only instanteous dosage)
+    Returns:
+    """
+    INSTANTANEOUS_DOSAGE = input('Is drug given at instantaneous time points (Y/N)? ')
+
+    if INSTANTANEOUS_DOSAGE == 'Y': 
         DOSE = int(input('Instantaneous dose of drug given per time point (ng): ')) # TODO: Only int or float
+        
         # Create time points list
         TIME_POINTS = [] 
         add_point = 'Y'
@@ -90,11 +102,13 @@ def protocol_input():
                 add_point = input('Add another point (Y/N)? ')
         TIME_POINTS.sort()
                 
-        # Make dosing_array
-        dosing_array = []
         for t in TIME_POINTS:
             dosing_array.append([t, t, DOSE])
-        return dosing_array
+        
+        # sort full dosing array by the first time point of both instantaneous and steady dosage 
+        dosing_array.sort()
+    
+    return dosing_array
 
 def max_time_input():
     """ # TODO: docstring """
