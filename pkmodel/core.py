@@ -20,4 +20,8 @@ sys_protocol = Protocol(dosing_array, MAX_TIME)
 
 # Add plotting here
 
-# Add return graphs and CSV here
+# Add return graphs and CSV here (CSV currently only outputs model input parameters)
+
+save_csv(sys_model,dosing_array,MAX_TIME,filename = 'prototypemodel')
+
+
