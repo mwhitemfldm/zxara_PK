@@ -8,7 +8,7 @@ def central_input():
     central (list): central compartment parameters [VC, CL]
     """
     # TODO: Fail if input anything except int or float
-    VC = input('Volume of central compartment in mL: ')
+    VC = float(input('Volume of central compartment in mL: '))
     CL = float(input('Clearance rate from central compartment in mL/h: '))
     central = [VC, CL]
     
@@ -32,8 +32,8 @@ def peripheral_input():
     peripherals = []
     for i in range(0,NUM_OF_PCS):
          # TODO: Fail if input anything except int or float
-        VP = float(input('Volume of peripheral compartment {} in mL: '.format(i+1)))
-        QP = float(input('Transition rate between central compartment and peripheral compartment {} in mL/h: '.format(i+1)))
+        VP = float(input(f'Volume of peripheral compartment {i+1} in mL: '))
+        QP = float(input(f'Transition rate between central compartment and peripheral compartment {i+1} in mL/h: '))
         peripherals.append([VP,QP])
     
     return peripherals
@@ -59,47 +59,56 @@ def dosage_input():
     return dosage
 
 
-def dosage_protocol_input():
+def protocol_input_steady():
     """ 
-    Collect dosage protocol from user input
-
+    Collect steady dosage protocol from user input
     Returns:
-    STEADY_DOSAGE (string): 'Y' = steady dosage, 'N' = instantaneous dosage
-    steady_dict (dict): If STEADY_DOSAGE == 'Y', {'start_time': START_TIME (float), 'end_time': END_TIME (float), 'dose_rate': DOSE_RATE (float)}
-    inst_dict (dict): If STEADY_DOSAGE == 'N', {time1: DOSE, time2: DOSE, ...}
     """
-    # TODO: what if it is a combination of both types of dosage 
-    # TODO: Replace returned dictionaries to make it simpler?
-
     # TODO: Fail if input anything except Y/N
     STEADY_DOSAGE = input('Is drug given in steady application over time (Y/N)? ')
+    # Make dosing_array
+    dosing_array = []
 
     if STEADY_DOSAGE == 'Y':
         DOSE_RATE = float(input('Dosage rate of drug given (ng/h): ')) # TODO: Only int or float
         print('Input time period during which drug is given:')
         START_TIME = float(input('Start time (h): ')) # TODO: Only int or float
         END_TIME = float(input('End time (h): ')) # TODO: Only int or float
+        DOSE = DOSE_RATE * (END_TIME - START_TIME)
         
-        # Make dict of data
-        steady_dict = {'start_time': START_TIME, 'end_time': END_TIME, 'dose_rate': DOSE_RATE}
+        # Make dosing array
+        dosing_array = [[START_TIME, END_TIME, DOSE]]
+        return dosing_array
+    
+    else:
+        dosing_array = []
+        return dosing_array
 
-        return STEADY_DOSAGE, steady_dict
-        
-    else: 
+def protocol_input_instantaneous(dosing_array):
+    """ 
+    Collect instantaneous dosage protocol from user input and adds to array created for steady dosage (empty if only instanteous dosage)
+    Returns:
+    """
+    INSTANTANEOUS_DOSAGE = input('Is drug given at instantaneous time points (Y/N)? ')
+
+    if INSTANTANEOUS_DOSAGE == 'Y': 
         DOSE = int(input('Instantaneous dose of drug given per time point (ng): ')) # TODO: Only int or float
+        
         # Create time points list
         TIME_POINTS = [] 
         add_point = 'Y'
         while add_point != 'N':
-                TIME_POINTS.append(input('Time point at which drug is given (h): '))
+                TIME_POINTS.append(float(input('Time point at which drug is given (h): ')))
                 add_point = input('Add another point (Y/N)? ')
+        TIME_POINTS.sort()
                 
-        # Make dict of data
-        inst_dict = {}
         for t in TIME_POINTS:
-            inst_dict[t] = DOSE
-
-        return STEADY_DOSAGE, inst_dict
+            dosing_array.append([t, t, DOSE])
+        
+        # sort full dosing array by the first time point of both instantaneous and steady dosage 
+        dosing_array.sort()
+    
+    return dosing_array
 
 def max_time_input():
     """ # TODO: docstring """

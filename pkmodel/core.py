@@ -1,18 +1,20 @@
 from input import *
 from model import Model
+from protocol import Protocol
 
-# Collect user input data for model
+# Collect model input data 
 central = central_input()
 peripherals = peripheral_input()
 dosage = dosage_input()
 
 sys_model = Model(central, peripherals, dosage) # Create Model object
 
-# Collect dosage protocol input data
-STEADY_DOSAGE, dosage_protocol = dosage_protocol_input()
-
-# Get max time input
+# Collect protocol input data
+dosing_array = protocol_input_steady()
+dosing_array = protocol_input_instantaneous(dosing_array)
 MAX_TIME = max_time_input()
+
+sys_protocol = Protocol(dosing_array, MAX_TIME)
 
 # Add solver here
 
