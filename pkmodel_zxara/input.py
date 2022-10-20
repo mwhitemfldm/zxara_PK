@@ -27,7 +27,8 @@ def peripheral_input():
         - empty list if no peripheral compartments
     """
     # TODO: Fail if input anything except int
-    NUM_OF_PCS = int(input('Number of peripheral compartments (0, 1, or 2): '))
+    print('For peripheral compartments: /n')
+    NUM_OF_PCS = int(input('Number of peripheral compartments: '))
 
     peripherals = []
     for i in range(0,NUM_OF_PCS):
@@ -66,6 +67,7 @@ def protocol_input_steady():
     """
     # TODO: Fail if input anything except Y/N
     STEADY_DOSAGE = input('Is drug given in steady application over time (Y/N)? ')
+    
     # Make dosing_array
     dosing_array = []
 
