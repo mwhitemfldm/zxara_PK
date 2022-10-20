@@ -1,5 +1,9 @@
 # pkmodel-zxara
 
+TODO:
+ - Usage section
+ - Model theory section
+
 A Python package for pharmacokinetics modelling of drug delivery systems.
 
 ## Installation
@@ -10,7 +14,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
 pip install pkmodel-zxara
 ```
 
-## Usage - need to update this
+## Usage 
 
 ```python
 import foobar
@@ -24,6 +28,8 @@ foobar.pluralize('goose')
 # returns 'phenomenon'
 foobar.singularize('phenomena')
 ```
+
+## Theory
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
