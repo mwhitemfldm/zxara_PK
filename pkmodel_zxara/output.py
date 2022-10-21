@@ -10,12 +10,12 @@ def plotPK(plot_data, filename):
     Parameters:
     plot_data: list of lists for each model [plot_data[0]: data for first model, ..., plot_data[i]]
     for ith model:
-        plot_data[i][0]: Array of time points / h
-        plot_data[i][1]: Array of concentration points # TODO: Units = ng / L?
+        plot_data[i][0]: 2D ndarray of time points / h for each concentration
+        plot_data[i][1]: 2D ndrray of concentration points # TODO: Confirm units = ng / L?
         plot_data[i][2]: dosage_array, empty list if no dosage compartment
 
     Returns:
-    None, plot saved as PKplot.png
+    None, plot saved as filename.png
     '''
 
     import matplotlib.pyplot as plt
@@ -70,6 +70,21 @@ def plotPK(plot_data, filename):
 
 
 def save_data(sol_values, dosage_comp, filename):
+    """
+    Saves solution data
+
+    Parameters:
+    sol_values (list): 
+        sol_values[0]: 2D ndarray of time points
+        sol_values[1]: 2D ndarray of concentration values
+    dosage_comp (list):
+        empty list if no dosage compartment
+        [k_a] if dosage compartment present
+
+    Returns:
+    None, saves <filename>_data.csv
+    """
+
     headers = "Dosage compartment conc. ng / mL, Central compartment conc. ng / mL"
     # Add peripherals to headers
     for i in range(0, sol_values[1].shape[1] - 2):
@@ -91,7 +106,16 @@ def save_data(sol_values, dosage_comp, filename):
 
 def save_params(model, dosing_array, max_time, filename):
     '''
-    Saves model parameters and solution output
+    Saves model parameters
+
+    Parameters:
+    model (Model): Model class object
+    dosing_array (list): specifies doses given
+    max_time (float)
+    filename (string)
+
+    Returns:
+    None, saves <filename>_params.csv
     '''
     input_dict = vars(model)
 
