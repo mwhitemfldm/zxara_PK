@@ -21,21 +21,23 @@ def plotPK(time, concentration, dosage_comp, n_models=1):
     fig, axes = plt.subplots(nrows=1, ncols= n_models)
     ylabel = 'Drug mass / ng' # TODO: Conc?
     xlabel = 'Time / h '
-    legend = ['Central compartment']
+    legend = ['Dosage compartment', 'Central compartment']
+    # Add peripherals to legend
+    for i in range(0, concentration.shape[1]-2):
+        legend.append(f"Peripheral compartment {i+1}")
 
     # Strip dosage compartment data if non-existant
     if dosage_comp == []:
         time = np.delete(time, 0, 1)
         concentration = np.delete(concentration, 0, 1)
+        legend.remove('Dosage compartment')
 
     if n_models == 1: # Otherwise error that AxesSubplot object is not subscriptable
         axes.plot(time, concentration)
         axes.set_title('Model 1')
         axes.set_ylabel(ylabel)
         axes.set_xlabel(xlabel)
-
-        # Create legend
-        for i in en
+        axes.legend(legend)
     
     # TODO: Fix for multiple models
     #  else:

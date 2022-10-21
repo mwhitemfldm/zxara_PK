@@ -9,4 +9,3 @@ __version__ = importlib.metadata.version(__name__)
 
 # Import main classes
 from .model import Model    # noqa
-from .solution import Solution     # noqa

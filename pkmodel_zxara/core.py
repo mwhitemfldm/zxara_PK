@@ -29,5 +29,3 @@ plotPK(time_vals, conc_vals, sys_model.dosage)
 # Add return graphs and CSV here (CSV currently only outputs model input parameters)
 
 save_csv(sys_model, dosing_array, TMAX, filename='prototypemodel')
-
-
