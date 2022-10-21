@@ -31,7 +31,7 @@ class ModelTest(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             model = pk.model.Model([5.5, -0.3], [[1,2],[0.001, 2], [1,5]], [])
-        with self.assertRaises(TypeError):
+        with self.assertRaises(ValueError):
             model = pk.model.Model([5.5, 0.3], [[1000,2],[12, 'k']], [])
         # no peripheral compartment
         with self.assertRaises(ValueError):

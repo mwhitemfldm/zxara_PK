@@ -7,8 +7,10 @@ def catchTypeError(input_list):
     if len(input_list) != 2:
         raise ValueError('wrong number of inputs provided')
     for val in input_list:
-        if int(val) < 0 or not isinstance(val, (float, int)):
-            raise ValueError('input values should be non-negative numbers')
+        if not isinstance(val, (float, int)):
+            raise ValueError('input values should be numbers')
+        elif float(val) < 0:
+            raise ValueError('input values should be non-negative')
 
 
 class Model:
