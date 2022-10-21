@@ -66,7 +66,7 @@ def plotPK(plot_data, filename):
             axes[i].legend(legend)
     
     fig.tight_layout()
-    fig.savefig(filename +".png")
+    fig.savefig(os.path.join(os.getcwd(), filename + ".png"))
     plt.show()
 
 
@@ -102,7 +102,7 @@ def save_data(sol_values, dosage_comp, filename):
     final_array = np.insert(final_array, 0, sol_values[0][:,0], axis=1)
     headers = "Time / h, " + headers
 
-    np.savetxt(filename + '_data.csv', final_array, delimiter=",", header=headers)
+    np.savetxt(os.path.join(os.getcwd(), filename + '_data.csv'), final_array, delimiter=",", header=headers)
 
 
 def save_params(model, dosing_array, max_time, filename):
@@ -127,7 +127,7 @@ def save_params(model, dosing_array, max_time, filename):
     input_dict['Start/end time of dose and dose amount (ng)'] = dosing_array
     input_dict['Maximum time'] = max_time
 
-    with open(filename + '_params.csv', 'w', newline='') as f:
+    with open(os.path.join(os.getcwd(), filename +  '_params.csv'), 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=input_dict.keys())
         writer.writeheader()
         writer.writerow(input_dict)
