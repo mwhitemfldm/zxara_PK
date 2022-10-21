@@ -1,7 +1,7 @@
-from .input import central_input, peripheral_input, dosage_input, input_doses, max_time_input, check_error_string_input
-from .model import Model
-from .solver import PK_solver
-from .output import plotPK, save_data, save_params
+from input import central_input, peripheral_input, dosage_input, input_doses, max_time_input, check_error_string_input
+from model import Model
+from solver import PK_solver
+from output import plotPK, save_data, save_params
 
 plot_data = []  # Initialise plot_data list for later
 add_model = None  # Initialise add_model parameter for while loop
