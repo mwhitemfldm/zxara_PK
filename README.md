@@ -2,7 +2,7 @@
 
 TODO:
  - Usage section
- - 
+ 
 A Python package for pharmacokinetics modelling of drug delivery systems.
 
 ## Installation
