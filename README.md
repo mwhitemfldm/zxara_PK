@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/mwhitemfldm/zxara_PK/branch/main/graph/badge.svg?token=QQLB4EFP0A)](https://codecov.io/gh/mwhitemfldm/zxara_PK)
+
 # pkmodel-zxara
 
 A Python package for pharmacokinetics modelling of drug delivery systems.
