@@ -35,7 +35,7 @@ def plotPK(time, concentration, dosage_comp, n_models=1):
         axes.set_xlabel(xlabel)
 
         # Create legend
-        axes.legend(legend)
+        for i in en
     
     # TODO: Fix for multiple models
     #  else:
