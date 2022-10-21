@@ -63,8 +63,7 @@ def PK_solver(sys_model, TMAX, DOSE_REGIME):
     """_summary_
 
     Returns:
-        tsol: _description_
-        ysol: 
+    sol_values (list): [tsol, ysol]
     """
 
     central = sys_model.central
@@ -127,8 +126,10 @@ def PK_solver(sys_model, TMAX, DOSE_REGIME):
     tsol = np.concatenate((tsol))
     tsol = np.transpose(np.tile(tsol, (len(ysol),1)))
     ysol = np.transpose(ysol[:,1:])
+
+    sol_values = [tsol, ysol]
     
-    return tsol, ysol
+    return sol_values
 
 
 # %%

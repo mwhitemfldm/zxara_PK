@@ -21,7 +21,7 @@ from output import *
 sys_model = Model([10,10], [[5,5]], []) # Create Model object
 TMAX = 10
 dosing_array = [[1,1,10]]
-time_vals, conc_vals = pkmod.PK_solver(sys_model=sys_model, TMAX=TMAX, DOSE_REGIME=dosing_array)
+sol_values = pkmod.PK_solver(sys_model=sys_model, TMAX=TMAX, DOSE_REGIME=dosing_array)
 
 plotPK(time_vals, conc_vals, sys_model.dosage)
 # Add plotting here
