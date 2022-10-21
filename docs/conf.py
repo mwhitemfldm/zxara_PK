@@ -13,17 +13,14 @@ author = 'Anissa Alloula, Marina Luchner, George Shillcock, Mia Whitefield, Jaco
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = [
-  'myst_parser'
-]
+extensions = []
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-
-
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'albatross'
+html_theme = 'alabaster'
 html_static_path = [] # used to be ['_static']
+
