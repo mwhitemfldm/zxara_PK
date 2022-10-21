@@ -5,6 +5,8 @@
 
 A Python package for pharmacokinetics modelling of drug delivery systems.
 
+Read the Docs [here](https://zxara-pk.readthedocs.io/en/latest/).
+
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
