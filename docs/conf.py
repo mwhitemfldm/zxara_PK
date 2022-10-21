@@ -15,10 +15,6 @@ author = 'Anissa Alloula, Marina Luchner, George Shillcock, Mia Whitefield, Jaco
 
 extensions = [
   'myst_parser'
-  'sphinx.ext.autodoc',
-  'sphinx.ext.mathjax',
-  'sphinx.ext.viewcode',
-  'sphinx.ext.napoleon'
 ]
 
 templates_path = ['_templates']
