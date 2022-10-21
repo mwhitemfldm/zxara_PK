@@ -1,12 +1,14 @@
 import numpy as np
 import csv
 
-def plotPK(time, concentration, dosage_comp, n_models=1):    
+def plotPK(plot_data):   
+    # time, concentration, dosage_comp, n_models=1
     '''Plot pharmacokinetic models.
 
     Plots different pharmacokinetic models next to each other.
     
     Parameters:
+    plot_data: list of lists
     time (list): Array of time points / h
     concentration (list): List of concentration points # TODO: Conc? Units?
     dosage_comp (list): From Model object. Empty if no dosage compartment.
@@ -17,23 +19,24 @@ def plotPK(time, concentration, dosage_comp, n_models=1):
     '''
 
     import matplotlib.pyplot as plt
-  
-    fig, axes = plt.subplots(nrows=1, ncols= n_models)
-    ylabel = 'Drug mass / ng' # TODO: Conc?
+
+    fig, axes = plt.subplots(nrows=1, ncols=len(plot_data))
+
+    ylabel = 'Drug mass / ng'  # TODO: Conc?
     xlabel = 'Time / h '
     legend = ['Dosage compartment', 'Central compartment']
     # Add peripherals to legend
-    for i in range(0, concentration.shape[1]-2):
+    for i in range(0, plot_data[0][1].shape[1]-2):
         legend.append(f"Peripheral compartment {i+1}")
 
     # Strip dosage compartment data if non-existant
-    if dosage_comp == []:
-        time = np.delete(time, 0, 1)
-        concentration = np.delete(concentration, 0, 1)
+    if plot_data[0][2] == []:
+        plot_data[0][0] = np.delete(plot_data[0][0], 0, 1)
+        plot_data[0][1] = np.delete(plot_data[0][1], 0, 1)
         legend.remove('Dosage compartment')
 
-    if n_models == 1: # Otherwise error that AxesSubplot object is not subscriptable
-        axes.plot(time, concentration)
+    if len(plot_data):  # Otherwise error that AxesSubplot object is not subscriptable
+        axes.plot(plot_data[0][0], plot_data[0][1])
         axes.set_title('Model 1')
         axes.set_ylabel(ylabel)
         axes.set_xlabel(xlabel)
