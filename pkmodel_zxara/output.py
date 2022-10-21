@@ -2,17 +2,17 @@ import numpy as np
 import csv
 
 def plotPK(plot_data):   
-    # time, concentration, dosage_comp, n_models=1
+    #   TODO: make a class to simplify this?
     '''Plot pharmacokinetic models.
 
     Plots different pharmacokinetic models next to each other.
     
     Parameters:
-    plot_data: list of lists
-    time (list): Array of time points / h
-    concentration (list): List of concentration points # TODO: Conc? Units?
-    dosage_comp (list): From Model object. Empty if no dosage compartment.
-    n_models: Number of different models to plot and compare. Default value 1.
+    plot_data: list of lists for each model [plot_data[0]: data for first model, ..., plot_data[i]]
+    for ith model:
+        plot_data[i][0]: Array of time points / h
+        plot_data[i][1]: Array of concentration points # TODO: Units = ng / L?
+        plot_data[i][2]: dosage_array, empty list if no dosage compartment
 
     Returns:
     None, plot saved as PKplot.png
@@ -87,5 +87,3 @@ def save_csv(model, dosing_array, max_time, filename):
         writer = csv.DictWriter(f, fieldnames=input_dict.keys())
         writer.writeheader()
         writer.writerow(input_dict)
-
-    # TODO: Modify CSV input parameters (lists are saved as strings)

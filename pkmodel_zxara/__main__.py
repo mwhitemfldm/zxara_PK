@@ -29,5 +29,6 @@ plotPK(plot_data)
 
 # Add return graphs and CSV here (CSV currently only outputs model input parameters)
 # TODO: modify to save multiple data
+# TODO: allow user to choose save directory for CSV and PNG
 
 save_csv(sys_model, dosing_array, TMAX, filename='Model')
