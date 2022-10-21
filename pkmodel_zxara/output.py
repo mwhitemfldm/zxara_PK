@@ -1,7 +1,7 @@
 import numpy as np
 import csv
 
-def plotPK(plot_data):   
+def plotPK(plot_data, filename):   
     #   TODO: make a class to simplify this?
     '''Plot pharmacokinetic models.
 
@@ -25,7 +25,6 @@ def plotPK(plot_data):
     ylabel = 'Drug mass / ng'  # TODO: Conc?
     xlabel = 'Time / h '
     
-
     if len(plot_data) == 1:  # Otherwise error that AxesSubplot object is not subscriptable
         legend = ['Dosage compartment', 'Central compartment']
         # Add peripherals to legend
@@ -66,24 +65,44 @@ def plotPK(plot_data):
             axes[i].legend(legend)
     
     fig.tight_layout()
-    fig.savefig("PKplot.png")
+    fig.savefig(filename +".png")
     plt.show()
 
 
-def save_csv(model, dosing_array, max_time, filename):
+def save_data(sol_values, filename):
+    headers = "Dosage compartment conc. ng / mL, Central compartment conc. ng / mL"
+    # Add peripherals to headers
+    for i in range(0, sol_values[1].shape[1] - 2):
+        headers += f", Peripheral compartment {i+1} conc. ng / mL"
+        
+    final_array = sol_values[1]
+
+    # # Strip dosage compartment data if non-existant
+    # if len(model.dosage) == 0:
+    #     final_array = np.delete(final_array, 0, 1)
+    #     headers.remove('Dosage compartment')
+
+    # Add time value
+    final_array = np.insert(final_array, 0, sol_values[0][:,0], axis=1)
+    headers = "Time / h, " + headers
+
+    np.savetxt(filename + '_data.csv', final_array, delimiter=",", header=headers)
+
+
+def save_params(model, dosing_array, max_time, filename):
     '''
-    Module to save model parameters as well as solution output
+    Saves model parameters and solution output
     '''
     input_dict = vars(model)
 
-    # rename keys to make more detailed
+    # Rename keys to make more detailed
     input_dict['Central compartment [volume in mL, clearance in mL/h]'] = input_dict.pop('central')
     input_dict['Peripheral compartment(s) [volume in mL, transition rate in mL/h]'] = input_dict.pop('peripherals')
     input_dict['Absorption rate for dosage compartment (/h) if subcutaneous dosing'] = input_dict.pop('dosage')
     input_dict['Start/end time of dose and dose amount (ng)'] = dosing_array
     input_dict['Maximum time'] = max_time
 
-    with open(filename + '.csv', 'w', newline='') as f:
+    with open(filename + '_params.csv', 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=input_dict.keys())
         writer.writeheader()
         writer.writerow(input_dict)
