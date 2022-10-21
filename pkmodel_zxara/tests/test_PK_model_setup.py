@@ -65,4 +65,3 @@ class PK_model_setupTest(unittest.TestCase):
         self.assertEqual(ytest.shape[0], 1001)
         self.assertAlmostEqual(np.mean(ytest), 0.7298813)
 
-#python -m unittest pkmodel_zxara.tests.test_PK_model_setup.py
