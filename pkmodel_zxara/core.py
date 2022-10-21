@@ -20,7 +20,7 @@ sol_values = pkmod.PK_solver(sys_model=sys_model, TMAX=TMAX, DOSE_REGIME=dosing_
 
 plot_data.append([sol_values[0], sol_values[1], sys_model.dosage])
 
-add_model = check_error_string_input(add_model, ['Y','N'],'Do you want to compare another model? ')
+# add_model = check_error_string_input(add_model, ['Y','N'],'Do you want to compare another model? ')
 
 plotPK(plot_data)
 # Add plotting here

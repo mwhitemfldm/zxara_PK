@@ -24,42 +24,53 @@ def plotPK(plot_data):
 
     ylabel = 'Drug mass / ng'  # TODO: Conc?
     xlabel = 'Time / h '
-    legend = ['Dosage compartment', 'Central compartment']
-    # Add peripherals to legend
-    for i in range(0, plot_data[0][1].shape[1]-2):
-        legend.append(f"Peripheral compartment {i+1}")
+    
 
-    # Strip dosage compartment data if non-existant
-    if plot_data[0][2] == []:
-        plot_data[0][0] = np.delete(plot_data[0][0], 0, 1)
-        plot_data[0][1] = np.delete(plot_data[0][1], 0, 1)
-        legend.remove('Dosage compartment')
+    if len(plot_data) == 1:  # Otherwise error that AxesSubplot object is not subscriptable
+        legend = ['Dosage compartment', 'Central compartment']
+        # Add peripherals to legend
+        for i in range(0, plot_data[0][1].shape[1]-2):
+            legend.append(f"Peripheral compartment {i+1}")
 
-    if len(plot_data):  # Otherwise error that AxesSubplot object is not subscriptable
+        # Strip dosage compartment data if non-existant
+        if plot_data[0][2] == []:
+            plot_data[0][0] = np.delete(plot_data[0][0], 0, 1)
+            plot_data[0][1] = np.delete(plot_data[0][1], 0, 1)
+            legend.remove('Dosage compartment')
+        
         axes.plot(plot_data[0][0], plot_data[0][1])
         axes.set_title('Model 1')
         axes.set_ylabel(ylabel)
         axes.set_xlabel(xlabel)
         axes.legend(legend)
     
-    # TODO: Fix for multiple models
-    #  else:
+    else:
+        for i in range(len(plot_data)):
 
-    #     for i in range(n_models):
+            legend = ['Dosage compartment', 'Central compartment']
+            # Add peripherals to legend
+            for i in range(0, plot_data[i][1].shape[1]-2):
+                legend.append(f"Peripheral compartment {i+1}")
+
+            # Strip dosage compartment data if non-existant
+            if plot_data[i][2] == []:
+                plot_data[i][0] = np.delete(plot_data[i][0], 0, 1)
+                plot_data[i][1] = np.delete(plot_data[i][1], 0, 1)
+                legend.remove('Dosage compartment')
             
-    #         j = i+1 # axes and array indices start with zero while model should start with 1
-    #         axes[i].plot(time[i], concentration[i])
-    #         axes[i].set_title(f'Model {j}')
-    #         axes[i].set_ylabel(ylabel)
-    #         axes[i].set_xlabel(xlabel)
-    #         axes[i].legend(legend)
+            j = i+1 # axes and array indices start with zero while model should start with 1
+            axes[i].plot(plot_data[i][0], plot_data[i][1])
+            axes[i].set_title(f'Model {j}')
+            axes[i].set_ylabel(ylabel)
+            axes[i].set_xlabel(xlabel)
+            axes[i].legend(legend)
     
     fig.tight_layout()
     fig.savefig("PKplot.png")
     plt.show()
 
 
-def save_csv(model,dosing_array,max_time,filename):
+def save_csv(model, dosing_array, max_time, filename):
     '''
     Module to save model parameters as well as solution output
     '''
@@ -72,7 +83,7 @@ def save_csv(model,dosing_array,max_time,filename):
     input_dict['Start/end time of dose and dose amount (ng)'] = dosing_array
     input_dict['Maximum time'] = max_time
 
-    with open(filename+'.csv', 'w', newline='') as f:
+    with open(filename + '.csv', 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=input_dict.keys())
         writer.writeheader()
         writer.writerow(input_dict)
