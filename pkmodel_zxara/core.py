@@ -18,7 +18,7 @@ MAX_TIME = max_time_input()
 
 time_vals, conc_vals = pkmod.PK_solver(sys_model = sys_model, TMAX = MAX_TIME, DOSE_REGIME = dosing_array)
 
-print(conc_vals[0])
+print(sys_model.dosage)
 
 plotPK(time_vals, conc_vals, sys_model.dosage)
 # Add plotting here

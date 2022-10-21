@@ -20,7 +20,7 @@ def central_input():
             break
 
 
-    while float(input('Volume of central compartment in mL: ') != float:
+    while float(input('Volume of central compartment in mL: ')) != float:
         VC = (input('Volume of central compartment in mL: '))
     
     CL = float(input('Clearance rate from central compartment in mL/h: '))
