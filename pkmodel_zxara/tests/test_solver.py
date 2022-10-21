@@ -3,11 +3,11 @@
 """
 import numpy as np
 import unittest
-from unittest.mock import Mock
 #import pkmodel_zxara as pk
-import pkmodel_zxara.PK_model_setup as pkmod
+import pkmodel_zxara.solver as pkmod
 from pkmodel_zxara.model import Model 
-class PKmod_rhs_Test(unittest.TestCase):
+
+class rhs_Test(unittest.TestCase):
     """
     Tests the :function:`rhs`.
     """
@@ -25,7 +25,7 @@ class PKmod_rhs_Test(unittest.TestCase):
         test_rhs = pkmod.rhs(t, y, central, periphal, ka, dose_concentration, DOSAGE_COMPARTMENT)
         self.assertEqual(test_rhs.tolist(), [1, -7, 1, 2, 2.5, 3.5])
         
-class PKmod_Integrate_Test(unittest.TestCase):
+class Integrate_Test(unittest.TestCase):
     """
     Tests the :function: `Integrate` produces expected results.
     """
@@ -45,7 +45,7 @@ class PKmod_Integrate_Test(unittest.TestCase):
         self.assertEqual(test_y.shape[1], 77)
         self.assertAlmostEqual(np.mean(test_y), 2.81614284) 
 
-class PK_model_setupTest(unittest.TestCase):
+class PK_solver_Test(unittest.TestCase):
     """
     Tests the :function:`PK_solver`.
     """
