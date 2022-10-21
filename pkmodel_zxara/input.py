@@ -8,7 +8,21 @@ def central_input():
     central (list): central compartment parameters [VC, CL]
     """
     # TODO: Fail if input anything except int or float
-    VC = float(input('Volume of central compartment in mL: '))
+    VC = None
+
+    while True:
+        try:
+            VC = float(input('Volume of central compartment in mL: '))
+        except ValueError:
+            print("Incorrect type try again")
+            continue
+        else:
+            break
+
+
+    while float(input('Volume of central compartment in mL: ') != float:
+        VC = (input('Volume of central compartment in mL: '))
+    
     CL = float(input('Clearance rate from central compartment in mL/h: '))
     central = [VC, CL]
     
@@ -63,6 +77,7 @@ def input_doses():
     TOTAL_DOSES = int(input('How many total doses is the individual given (steady or continuous)? '))
     dosing_array = []
 
+# change start time
     for i in range(1,TOTAL_DOSES+1):
         print('Dose ' + str(i) + ':')
         # TODO: Fail if input anything except Y/N
