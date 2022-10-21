@@ -1,5 +1,5 @@
-# function that plots different pharmacokinetic models as different subplots
 import numpy as np
+import csv
 
 def plotPK(time, concentration, n_models):    
     '''Plot pharmacokinetic models.
@@ -41,3 +41,25 @@ def plotPK(time, concentration, n_models):
     plt.show()
 
 # plotPK(np.array([[1,2,3],[2,3,1],[3,1,2]]), np.array([[4,5,6],[5,6,4],[6,4,5]]), 3) this is how i thought the input would look like
+
+
+
+def save_csv(model,dosing_array,max_time,filename):
+    '''
+Module to save model parameters as well as solution output
+    '''
+    input_dict = vars(model)
+
+    # rename keys to make more detailed
+    input_dict['Central compartment (volume in mL, clearance in mL/h)'] = input_dict.pop('central')
+    input_dict['Peripheral compartment(s) (volume in mL, transition rate in mL/h)'] = input_dict.pop('peripherals')
+    input_dict['Absorption rate for dosage compartment (/h) if subcutaneous dosing'] = input_dict.pop('dosage')
+    input_dict['Start/end time of dose and dose amount (ng)'] = dosing_array
+    input_dict['Maximum time'] = max_time
+
+    with open(filename+'.csv', 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=input_dict.keys())
+        writer.writeheader()
+        writer.writerow(input_dict)
+    
+    # TODO: add solution output and save as csv

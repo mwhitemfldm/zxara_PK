@@ -85,6 +85,11 @@ def input_doses():
     return dosing_array
 
 def max_time_input():
-    """ # TODO: docstring """
+    """
+    Collect maximum time user input
+    
+    Returns:
+    MAX_TIME (float): maximum time for modelling / h
+    """
     MAX_TIME = float(input('Enter maximum time for model (h): '))
     return MAX_TIME
