@@ -18,26 +18,27 @@ def plotPK(time, concentration, dosage_comp, n_models=1):
 
     import matplotlib.pyplot as plt
   
-    fig, axes = plt.subplots(nrows= 1, ncols= n_models)
+    fig, axes = plt.subplots(nrows=1, ncols= n_models)
     ylabel = 'Drug mass / ng' # TODO: Conc?
     xlabel = 'Time / h '
-    legend = ['Dosage compartment', 'Central compartment', 'Peripheral compartment', 'q4', 'q5']
+    legend = ['Central compartment']
 
-    # # Strip dosage compartment data if non-existant
-    # if dosage_comp == []:
-    #     np.delete(time, 0, 1)
-    #     np.delete(concentration, 0, 1)
-    #     legend.remove('Dosage compartment')
+    # Strip dosage compartment data if non-existant
+    if dosage_comp == []:
+        time = np.delete(time, 0, 1)
+        concentration = np.delete(concentration, 0, 1)
 
-    if n_models == 1: #otherwise error that AxesSubplot object is not subscriptable
+    if n_models == 1: # Otherwise error that AxesSubplot object is not subscriptable
         axes.plot(time, concentration)
         axes.set_title('Model 1')
         axes.set_ylabel(ylabel)
         axes.set_xlabel(xlabel)
+
+        # Create legend
         axes.legend(legend)
     
     # TODO: Fix for multiple models
-    #  else: 
+    #  else:
 
     #     for i in range(n_models):
             
@@ -48,13 +49,9 @@ def plotPK(time, concentration, dosage_comp, n_models=1):
     #         axes[i].set_xlabel(xlabel)
     #         axes[i].legend(legend)
     
-    
     fig.tight_layout()
     fig.savefig("PKplot.png")
     plt.show()
-
-# plotPK(np.array([[1,2,3],[2,3,1],[3,1,2]]), np.array([[4,5,6],[5,6,4],[6,4,5]])) # this is how i thought the input would look like
-
 
 
 def save_csv(model,dosing_array,max_time,filename):
