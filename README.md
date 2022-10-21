@@ -24,7 +24,7 @@ cd lib/python3.8/site-packages/pkmodel_zxara/
 Run the __main__.py file.
 
 ```
-python3 -m core.py
+python3 -m __main__.py
 ```
 
 ## Theory
