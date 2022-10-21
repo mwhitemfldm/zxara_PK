@@ -1,7 +1,7 @@
 from input import *
 from model import Model
-from protocol import Protocol
-import PK_model_setup as pkmod 
+import PK_model_setup as pkmod
+from save_output import save_csv
 
 # Collect model input data 
 central = central_input()
@@ -13,8 +13,6 @@ sys_model = Model(central, peripherals, dosage) # Create Model object
 # Collect protocol input data
 dosing_array = input_doses()
 MAX_TIME = max_time_input()
-
-sys_protocol = Protocol(dosing_array, MAX_TIME)
 
 # Add solver here
 
