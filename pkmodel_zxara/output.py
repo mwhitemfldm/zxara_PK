@@ -69,18 +69,18 @@ def plotPK(plot_data, filename):
     plt.show()
 
 
-def save_data(sol_values, filename):
+def save_data(sol_values, dosage_comp, filename):
     headers = "Dosage compartment conc. ng / mL, Central compartment conc. ng / mL"
     # Add peripherals to headers
     for i in range(0, sol_values[1].shape[1] - 2):
         headers += f", Peripheral compartment {i+1} conc. ng / mL"
-        
+
     final_array = sol_values[1]
 
-    # # Strip dosage compartment data if non-existant
-    # if len(model.dosage) == 0:
-    #     final_array = np.delete(final_array, 0, 1)
-    #     headers.remove('Dosage compartment')
+    # Strip dosage compartment data if non-existant
+    if len(dosage_comp) == 0:
+        final_array = np.delete(final_array, 0, 1)
+        headers = headers.replace('Dosage compartment conc. ng / mL, ', '')
 
     # Add time value
     final_array = np.insert(final_array, 0, sol_values[0][:,0], axis=1)

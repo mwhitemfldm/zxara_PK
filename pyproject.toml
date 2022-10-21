@@ -6,7 +6,7 @@ description = "Pharmacokinetic modelling of drug delivery"
 authors = [
 "Anissa Alloula <anissa.alloula@dtc.ox.ac.uk>", 
 "Marina Luchner <marina.luchner@dtc.ox.ac.uk>", 
-"George Shillock <george.shillock@dtc.ox.ac.uk>", 
+"George Shillcock <george.shillcock@dtc.ox.ac.uk>", 
 "Mia Whitefield <mia.whitefield@dtc.ox.ac.uk>", 
 "Jacob Wright <jacob.wright@dtc.ox.ac.uk>"
 ]
