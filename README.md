@@ -44,8 +44,6 @@ The program outputs a figure and the associated data. With these users may compa
 
 <img src=results/Example_Figure.png width="700">
 
-# TO DO - add example csv
-
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
