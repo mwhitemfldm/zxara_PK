@@ -1,7 +1,7 @@
 [![Test CI](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-ci.yml/badge.svg)](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-ci.yml)
 [![OS Test](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-os.yml/badge.svg)](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-os.yml)
 [![codecov](https://codecov.io/gh/mwhitemfldm/zxara_PK/branch/main/graph/badge.svg?token=QQLB4EFP0A)](https://codecov.io/gh/mwhitemfldm/zxara_PK)
-<!-- [![Documentation Status](https://readthedocs.org/projects/zxara-pk/badge/?version=latest)](https://zxara-pk.readthedocs.io/en/latest/?badge=latest) -->
+[![Documentation Status](https://readthedocs.org/projects/zxara-pk/badge/?version=latest)](https://zxara-pk.readthedocs.io/en/latest/?badge=latest)
 
 
 # pkmodel-zxara
@@ -43,8 +43,6 @@ The model presented discretises the body into several linked, homogeneous compar
 The program outputs a figure and the associated data. With these users may compare models with different protocols and physiological parameters. An example is provided in the results directory, as shown in the following figure.
 
 <img src=results/Example_Figure.png width="700">
-
-# TO DO - add example csv
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
