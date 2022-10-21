@@ -15,7 +15,7 @@ pip install pkmodel-zxara
 
 ## Usage 
 
-In a Python shell import the model library. *Emphasis on the underscore in the library name*.
+Run directly in a Python shell. *Emphasis on the underscore in the library name*.
 
 ```python
 python -m pkmodel_zxara
