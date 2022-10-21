@@ -60,10 +60,18 @@ def Integrate(t_interval, y0, central, periphal, ka, dose_concentration, DOSAGE_
 
 def PK_solver(sys_model, TMAX, DOSE_REGIME):
     
-    """_summary_
-
+    """Function that solves the ODEs for a given system and dosage regime
+    
+    Parameters:
+        sys_model: Model object of the system with user specified features
+        TMAX: The maximum time of the interval
+        DOSE_REGIME: A list of dose specifications for each dose. 
+                    Each dose specification takes the form of the following list: [start time, end time, total dose]
     Returns:
-    sol_values (list): [tsol, ysol]
+        tsol: array of time points corresponding to elements in ysol
+        ysol: array of concentrations of the drug in each compartment. 
+              Rows represent compartments 
+              Columns represent time points.
     """
 
     central = sys_model.central
@@ -120,18 +128,14 @@ def PK_solver(sys_model, TMAX, DOSE_REGIME):
     t_interval = np.arange(t0,TMAX,TMAX/1000)
     sol_t, sol_y = Integrate(t_interval,y0, central, peripheral, ka, dose_concentration, DOSAGE_COMPARTMENT)
     tsol.append(sol_t)
-    ysol = np.hstack([ysol,sol_y])
+    ysol = np.hstack([ysol, sol_y])
     
     # reshape data 
     tsol = np.concatenate((tsol))
     tsol = np.transpose(np.tile(tsol, (len(ysol),1)))
     ysol = np.transpose(ysol[:,1:])
 
-    sol_values = [tsol, ysol]
-    
-    return sol_values
-
-
+    return tsol, ysol
 # %%
 
 
