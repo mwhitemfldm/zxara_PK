@@ -15,8 +15,10 @@ pip install pkmodel-zxara
 
 ## Usage 
 
+In a Python shell import the model library. *Emphasis on the underscore in the library name*.
+
 ```python
-import foobar
+import pkmodel_zxara
 ```
 
 ## Theory
