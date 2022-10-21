@@ -4,9 +4,11 @@ It contains functionality for creating, solving, and visualising the solution
 of Parmokinetic (PK) models
 
 """
-# Import version info
-__version__ = importlib.metadata.version(__name__)
+# import importlib.metadata
 
-# Import main classes
-from .model import Model    # noqa
-from .solution import Solution     # noqa
+# # Import version info
+# __version__ = importlib.metadata.version(__name__)
+
+# # Import main classes
+# from .model import Model    # noqa
+# from .PK_model_setup import rhs    # noqa
