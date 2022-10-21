@@ -5,9 +5,8 @@ of Parmokinetic (PK) models
 
 """
 # Import version info
-from .version_info import VERSION_INT, VERSION  # noqa
+__version__ = importlib.metadata.version(__name__)
 
 # Import main classes
 from .model import Model    # noqa
-from .protocol import Protocol    # noqa
 from .solution import Solution     # noqa
