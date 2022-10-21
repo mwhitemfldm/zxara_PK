@@ -26,7 +26,7 @@ while add_model != 'N':
     save_data(sol_values, model_name)
     save_params(sys_model, dosing_array, TMAX, model_name)
 
-    plot_data.append([sol_values[0], sol_values[1], dosage])
+    plot_data.append([sol_values[0], sol_values[1], sys_model.dosage])
 
     add_model = check_error_string_input(add_model, ['Y', 'N'], 'Do you want to compare another model? ')
 
