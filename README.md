@@ -35,7 +35,7 @@ The model presented discretises the body into several linked, homogeneous compar
 
 ## Demo
 
-The program outputs a figure and the associated data which can be used to compare models with different protocols and physiological parameters.
+The program outputs a figure and the associated data. These which can be used to compare models with different protocols and physiological parameters, as shown in the following figure.
 
 <img src=PKplot.png width="500">
 
