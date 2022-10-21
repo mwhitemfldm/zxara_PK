@@ -20,7 +20,7 @@ def plotPK(plot_data):
 
     import matplotlib.pyplot as plt
 
-    fig, axes = plt.subplots(nrows=1, ncols=len(plot_data))
+    fig, axes = plt.subplots(nrows=1, ncols=len(plot_data), figsize=(6.4 * len(plot_data), 4.8))
 
     ylabel = 'Drug mass / ng'  # TODO: Conc?
     xlabel = 'Time / h '
