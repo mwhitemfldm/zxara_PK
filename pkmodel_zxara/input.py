@@ -132,7 +132,7 @@ def input_doses():
             START_TIME = None
             START_TIME = check_error(START_TIME,float,'Start time (h): ')
 
-            while START_TIME < previous_end_time:
+            while START_TIME <= previous_end_time:
                 print('Input of dose has to begin after end of preceding dose')
                 START_TIME = check_error(START_TIME,float,'Start time (h): ')
 
@@ -153,7 +153,7 @@ def input_doses():
             TIME_POINT = None
             TIME_POINT = check_error(DOSE,float,'Time point at which drug is given (h): ')
 
-            if TIME_POINT < previous_end_time:
+            if TIME_POINT <= previous_end_time:
                 print('Input of dose has to begin after end of preceding dose')
                 TIME_POINT = check_error(TIME_POINT,float,'Time point at which drug is given (h): ')
 

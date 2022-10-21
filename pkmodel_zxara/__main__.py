@@ -1,7 +1,7 @@
-from .input import central_input, peripheral_input, dosage_input, input_doses, max_time_input, check_error_string_input
-from .model import Model
-from .solver import PK_solver
-from .output import plotPK, save_csv
+from input import central_input, peripheral_input, dosage_input, input_doses, max_time_input, check_error_string_input
+from model import Model
+from solver import PK_solver
+from output import plotPK, save_csv
 
 plot_data = []
 add_model = None
