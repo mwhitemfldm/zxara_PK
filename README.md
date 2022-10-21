@@ -5,6 +5,8 @@
 
 A Python package for pharmacokinetics modelling of drug delivery systems.
 
+Read the Docs [here](https://zxara-pk.readthedocs.io/en/latest/).
+
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
@@ -35,7 +37,7 @@ The model presented discretises the body into several linked, homogeneous compar
 
 ## Demo
 
-The program outputs a figure and the associated data which can be used to compare models with different protocols and physiological parameters.
+The program outputs a figure and the associated data. These which can be used to compare models with different protocols and physiological parameters, as shown in the following figure.
 
 <img src=PKplot.png width="500">
 
