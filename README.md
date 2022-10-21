@@ -1,7 +1,7 @@
 [![Test CI](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-ci.yml/badge.svg)](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-ci.yml)
 [![OS Test](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-os.yml/badge.svg)](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-os.yml)
 [![codecov](https://codecov.io/gh/mwhitemfldm/zxara_PK/branch/main/graph/badge.svg?token=QQLB4EFP0A)](https://codecov.io/gh/mwhitemfldm/zxara_PK)
-[![Documentation Status]([https://readthedocs.org/projects/zxara-pk/badge/?version=latest](https://readthedocs.org/projects/example-sphinx-basic/badge/?version=lates))](https://example-sphinx-basic.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/example-sphinx-basic/badge/?version=lates)](https://example-sphinx-basic.readthedocs.io/en/latest/?badge=latest)
 
 # pkmodel-zxara
 
