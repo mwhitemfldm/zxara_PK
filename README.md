@@ -21,7 +21,7 @@ Navigate to the model directory.
 cd lib/python3.8/site-packages/pkmodel_zxara/
 ```
 
-Run the core.py file.
+Run the __main__.py file.
 
 ```
 python3 -m core.py
