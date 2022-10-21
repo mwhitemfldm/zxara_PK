@@ -1,7 +1,7 @@
-from input import *
-from model import Model
-import PK_model_setup as pkmod
-from output import *
+from .input import central_input, peripheral_input, dosage_input, input_doses, max_time_input, check_error_string_input
+from .model import Model
+from .solver import PK_solver
+from .output import plotPK, save_csv
 
 plot_data = []
 add_model = None
@@ -19,7 +19,7 @@ while add_model != 'N':
     dosing_array = input_doses()
     TMAX = max_time_input()
 
-    sol_values = pkmod.PK_solver(sys_model=sys_model, TMAX=TMAX, DOSE_REGIME=dosing_array)
+    sol_values = PK_solver(sys_model=sys_model, TMAX=TMAX, DOSE_REGIME=dosing_array)
 
     plot_data.append([sol_values[0], sol_values[1], sys_model.dosage])
 
