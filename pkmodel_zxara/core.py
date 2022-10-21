@@ -1,7 +1,7 @@
 from input import *
 from model import Model
 import PK_model_setup as pkmod
-from output import save_csv
+from output import *
 
 # Collect model input data 
 central = central_input()
@@ -17,6 +17,10 @@ MAX_TIME = max_time_input()
 # Add solver here
 
 time_vals, conc_vals = pkmod.PK_solver(sys_model = sys_model, TMAX = MAX_TIME, DOSE_REGIME = dosing_array)
+
+print(conc_vals[0])
+
+plotPK(time_vals, conc_vals, sys_model.dosage)
 # Add plotting here
 
 # Add return graphs and CSV here (CSV currently only outputs model input parameters)
