@@ -14,6 +14,7 @@ author = 'Anissa Alloula, Marina Luchner, George Shillcock, Mia Whitefield, Jaco
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+  'myst_parser'
   'sphinx.ext.autodoc',
   'sphinx.ext.mathjax',
   'sphinx.ext.viewcode',
