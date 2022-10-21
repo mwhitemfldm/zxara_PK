@@ -1,4 +1,5 @@
 [![Test CI](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-ci.yml/badge.svg)](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-ci.yml)
+[![OS Test](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-os.yml/badge.svg)](https://github.com/mwhitemfldm/zxara_PK/actions/workflows/test-os.yml)
 [![codecov](https://codecov.io/gh/mwhitemfldm/zxara_PK/branch/main/graph/badge.svg?token=QQLB4EFP0A)](https://codecov.io/gh/mwhitemfldm/zxara_PK)
 
 # pkmodel-zxara
