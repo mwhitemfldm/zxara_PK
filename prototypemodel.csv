@@ -1,2 +1,2 @@
 "Central compartment [volume in mL, clearance in mL/h]","Peripheral compartment(s) [volume in mL, transition rate in mL/h]",Absorption rate for dosage compartment (/h) if subcutaneous dosing,Start/end time of dose and dose amount (ng),Maximum time
-"[10, 10]","[[5, 5]]",[],"[[1, 1, 10]]",10
+"[5.0, 5.0]","[[1.0, 2.0], [2.0, 1.0]]",[2.0],"[[1.0, 1.0, 1.0], [3.0, 3.0, 1.0], [6.0, 6.0, 3.0]]",10.0

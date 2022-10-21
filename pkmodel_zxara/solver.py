@@ -128,13 +128,13 @@ def PK_solver(sys_model, TMAX, DOSE_REGIME):
     t_interval = np.arange(t0,TMAX,TMAX/1000)
     sol_t, sol_y = Integrate(t_interval,y0, central, peripheral, ka, dose_concentration, DOSAGE_COMPARTMENT)
     tsol.append(sol_t)
-    ysol = np.hstack([ysol,sol_y])
+    ysol = np.hstack([ysol, sol_y])
     
     # reshape data 
     tsol = np.concatenate((tsol))
     tsol = np.transpose(np.tile(tsol, (len(ysol),1)))
     ysol = np.transpose(ysol[:,1:])
-    
+
     return tsol, ysol
 # %%
 

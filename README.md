@@ -2,7 +2,7 @@
 
 TODO:
  - Usage section
- - 
+ 
 A Python package for pharmacokinetics modelling of drug delivery systems.
 
 ## Installation
@@ -15,8 +15,10 @@ pip install pkmodel-zxara
 
 ## Usage 
 
+Run directly in a Python shell. *Emphasis on the underscore in the library name*.
+
 ```python
-import foobar
+python -m pkmodel_zxara
 ```
 
 ## Theory
